@@ -1,40 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class HideObjective : MonoBehaviour
 {
-    public GameObject Text;
-    public bool Objective = true;
+    public GameObject TextBox;
+    private bool Objective = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        TextBox.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Objective == true)
+        SetObjectiveInScreen();
+    }
+    public void SetObjectiveInScreen()
+    {
+        if (Objective == true && Input.GetKeyDown(KeyCode.Escape))
         {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                Debug.Log("Apagado");
-                Text.SetActive(false);
-                Objective = false;
-            }
+            Debug.Log("Apagado");
+            TextBox.SetActive(false);
+            Objective = false;
         }
-       
-        /*if(Objective == false)
+
+        if (Objective == false && Input.GetKeyDown(KeyCode.E))
         {
-             if (Input.GetKeyDown(KeyCode.Q))
-                {
-                    Debug.Log("Encendido");
-                    Text.SetActive(true);
-                    Objective = true;
-                }
-         }*/
-        
+            Debug.Log("Encendido");
+            TextBox.SetActive(true);
+            Objective = true;
+        }
     }
 }

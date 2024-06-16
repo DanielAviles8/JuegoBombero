@@ -480,8 +480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b013eb7067bb1e545a115653785d2f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: {fileID: 354330717}
-  Objective: 1
+  TextBox: {fileID: 354330717}
 --- !u!4 &1156588573
 Transform:
   m_ObjectHideFlags: 0
