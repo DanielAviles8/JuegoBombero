@@ -20,14 +20,15 @@ public class HideObjective : MonoBehaviour
     }
     public void SetObjectiveInScreen()
     {
-        if (Objective == true && Input.GetKeyDown(KeyCode.Escape))
+        if (Objective == true && Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log("Apagado");
             TextBox.SetActive(false);
             Objective = false;
+            return;
         }
 
-        if (Objective == false && Input.GetKeyDown(KeyCode.E))
+        if (Objective == false && Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log("Encendido");
             TextBox.SetActive(true);
