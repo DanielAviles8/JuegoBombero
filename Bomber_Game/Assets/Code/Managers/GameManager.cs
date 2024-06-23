@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
                 // Ejemplo de lo que podrías hacer en el estado None
                 break;
             case GameState.LoadMenu:
-                SceneManager.LoadScene("SampleScene");
+              //  SceneManager.LoadScene("SampleScene");
                 break;
             case GameState.MainMenu:
                 // Ejemplo de lo que podrías hacer en el estado MainMenu
