@@ -5,12 +5,12 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 5f;
     private Vector3 target;
     private Animator animator; // Referencia al componente Animator
+    
 
     void Start()
     {
-        // animator.SetBool("IsWalking", false);
-        target = transform.position;
         animator = GetComponent<Animator>(); // Obtener referencia al Animator
+        target = transform.position;
     }
 
     void Update()
@@ -34,29 +34,61 @@ public class PlayerMovement : MonoBehaviour
     {
         // Calcular dirección para determinar la animación adecuada
         Vector2 direction = (target - transform.position).normalized;
-
-        // Determinar la dirección principal basada en los ángulos
-        float angle = Vector2.SignedAngle(Vector2.up, direction);
-        int directionIndex = Mathf.RoundToInt(angle / 90f); // 0: up, 1: right, 2: down, 3: left
-
+        
         // Actualizar los parámetros del Animator para la dirección y el estado de caminar
         animator.SetFloat("MoveX", direction.x);
         animator.SetFloat("MoveY", direction.y);
-
-        if (direction.magnitude > 0.1f)
+        bool WalkingLeft;
+        bool WalkingUp;
+        bool WalkingRight;
+        bool WalkingDown;
+        bool isWalking = direction.magnitude != 0f;
+        if(direction.magnitude == 0f)
         {
-            animator.SetBool("IsWalking", true);
-        } else
-        {
-            animator.SetBool("IsWalking", false);
+            isWalking = false;
         }
 
-        // Asignar la dirección correcta de caminar e idle
-        string[] walkAnimations = { "runUp", "runRight", "runDown", "runLeft" };
-        string[] idleAnimations = { "idleUp", "idleRight", "idleDown", "idleLeft" };
+        if (direction.x < 0f)
+        {
+            WalkingLeft = true;
+        }
+        else
+        {
+            WalkingLeft= false;
+        }
 
-        animator.Play(walkAnimations[directionIndex], -1, 0); // -1 para forzar la reproducción desde el inicio
-        animator.Play(idleAnimations[directionIndex], -1, 0);
+        if(direction.y > 0f)
+        {
+            WalkingUp = true;
+        }
+        else
+        {
+            WalkingUp = false;
+        }
+
+        if(direction.x > 0f)
+        {
+            WalkingRight = true;
+        }
+        else
+        {
+            WalkingRight= false;
+        }
+        
+        if(direction.y < 0f)
+        {
+            WalkingDown = true;
+        }
+        else
+        {
+            WalkingDown= false;
+        }
+
+        animator.SetBool("IsWalking", isWalking);
+        animator.SetBool("WalkingLeft", WalkingLeft);
+        animator.SetBool("WalkingUp", WalkingUp);
+        animator.SetBool("WalkingRight", WalkingRight);
+        animator.SetBool("WalkingDown", WalkingDown);
     }
 
     void FixedUpdate()
