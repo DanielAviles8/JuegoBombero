@@ -824,7 +824,7 @@ GameObject:
   - component: {fileID: 1846716057}
   m_Layer: 8
   m_Name: PlayGround
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1579,6 +1579,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1595363754954556039, guid: e0b84662163fd3443846b48de07b60ad, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1595363754954556039, guid: e0b84662163fd3443846b48de07b60ad, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1595363754954556039, guid: e0b84662163fd3443846b48de07b60ad, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1595363754954556039, guid: e0b84662163fd3443846b48de07b60ad, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4937782551097643961, guid: e0b84662163fd3443846b48de07b60ad, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
