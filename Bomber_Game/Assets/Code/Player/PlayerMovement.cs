@@ -1,42 +1,76 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.U2D;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
-
 {
-    //Declaro la variable de la velocidad y el Vector con el que se hace todo
     public float speed = 5f;
-    private Vector3 target;    
+    private Vector3 target;
+    private Animator animator; // Referencia al componente Animator
 
     void Start()
     {
-        //Seteo el vector al inicio
-        target = transform.position;   
+        // animator.SetBool("IsWalking", false);
+        target = transform.position;
+        animator = GetComponent<Animator>(); // Obtener referencia al Animator
     }
-    private void Update()
+
+    void Update()
     {
-        //Igualo el Vector target a el punto de la pantalla donde hace click izq sin moverse en z porque es 2d
         if (Input.GetMouseButtonDown(0))
         {
-            target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            target.z = transform.position.z;
-            
+            SetTargetPosition();
         }
-        
+
+        UpdateAnimation();
     }
-    private void FixedUpdate()
+
+    void SetTargetPosition()
     {
-        //Muevo el vector hacia ese punto con la velocidad multiplicada por el tiempo
+        // Obtener posición en el mundo donde se hizo clic
+        target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        target.z = transform.position.z; // Mantener la misma profundidad (z)
+    }
+
+    void UpdateAnimation()
+    {
+        // Calcular dirección para determinar la animación adecuada
+        Vector2 direction = (target - transform.position).normalized;
+
+        // Determinar la dirección principal basada en los ángulos
+        float angle = Vector2.SignedAngle(Vector2.up, direction);
+        int directionIndex = Mathf.RoundToInt(angle / 90f); // 0: up, 1: right, 2: down, 3: left
+
+        // Actualizar los parámetros del Animator para la dirección y el estado de caminar
+        animator.SetFloat("MoveX", direction.x);
+        animator.SetFloat("MoveY", direction.y);
+
+        if (direction.magnitude > 0.1f)
+        {
+            animator.SetBool("IsWalking", true);
+        } else
+        {
+            animator.SetBool("IsWalking", false);
+        }
+
+        // Asignar la dirección correcta de caminar e idle
+        string[] walkAnimations = { "runUp", "runRight", "runDown", "runLeft" };
+        string[] idleAnimations = { "idleUp", "idleRight", "idleDown", "idleLeft" };
+
+        animator.Play(walkAnimations[directionIndex], -1, 0); // -1 para forzar la reproducción desde el inicio
+        animator.Play(idleAnimations[directionIndex], -1, 0);
+    }
+
+    void FixedUpdate()
+    {
+        // Mover al jugador hacia el objetivo
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            Debug.Log("Funcionaaaaa");
-            
+            Debug.Log("Funciona");
+            // Aquí puedes agregar lógica adicional cuando el jugador colisiona con una pared
         }
     }
 }
