@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.GameOver:
                 // Ejemplo de lo que podrías hacer en el estado GameOver
+                Debug.Log("GameOver");
                 break;
             default:
                 break;

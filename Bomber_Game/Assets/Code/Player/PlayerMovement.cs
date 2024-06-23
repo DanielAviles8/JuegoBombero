@@ -96,13 +96,4 @@ public class PlayerMovement : MonoBehaviour
         // Mover al jugador hacia el objetivo
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
     }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Wall"))
-        {
-            Debug.Log("Funciona");
-            // Aquí puedes agregar lógica adicional cuando el jugador colisiona con una pared
-        }
-    }
 }
