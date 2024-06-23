@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
+
 {
     //Declaro la variable de la velocidad y el Vector con el que se hace todo
     public float speed = 5f;
@@ -22,8 +23,14 @@ public class PlayerMovement : MonoBehaviour
             target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             target.z = transform.position.z;
         }
-
+         
         //Muevo el vector hacia ese punto con la velocidad multiplicada por el tiempo
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
     }
+  /*   void OnCollisionEnter2D(Collision2D other) {
+        if(other.CompareTag("Wall")){
+           Debug.Log("works");
+        }
+    }*/
+    void OnCollisionEnter2D
 }
