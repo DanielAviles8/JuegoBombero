@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1158780387777702465}
   - component: {fileID: 3045834290713463686}
   - component: {fileID: 8693403142867921832}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fire2
   m_TagString: Fire
   m_Icon: {fileID: 0}
@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1164592227
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 1845970789, guid: 32c5f2e239314ec4fa4424cc3860ad0d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

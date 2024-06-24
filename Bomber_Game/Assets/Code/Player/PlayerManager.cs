@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public uint HP;
+    public int HP;
     
     // Start is called before the first frame update
     void Start()
