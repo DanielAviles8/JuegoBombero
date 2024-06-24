@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -7,10 +5,12 @@ public class PlayerManager : MonoBehaviour
 {
     public int HP;
     
+
+    
     // Start is called before the first frame update
     void Start()
     {
-        HP = 5;
+        HP = 1;
     }
 
     // Update is called once per frame
@@ -25,12 +25,12 @@ public class PlayerManager : MonoBehaviour
             HP--;
             if (HP <= 0)
             {
-              //  GameManager=GetComponent<GameManager>();
-             //   SetGameState(GameState.GameOver);
-                // hay que referenciar al GameManager     no me acuerdo xD
+                HP = 0;
+                GameManager.gameState = GameState.GameOver; 
+                
             }
             Debug.Log("ahh me quemo");
-            // Aquí puedes agregar lógica adicional cuando el jugador colisiona con una pared
+            
         }
     }
     

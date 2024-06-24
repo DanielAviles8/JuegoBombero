@@ -1,4 +1,3 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -40,17 +39,9 @@ public class PlayerMovement : MonoBehaviour
     {
         float xAbsolute = Mathf.Abs(direction.x);
         float yAbsolute = Mathf.Abs(direction.y);
-        // Calcular dirección para determinar la animación adecuada
-        //Vector2 direction = (target - transform.position).normalized;
-        
-        // Actualizar los parámetros del Animator para la dirección y el estado de caminar
-        //animator.SetFloat("MoveX", direction.x);
-        //animator.SetFloat("MoveY", direction.y);
         
         bool isWalking = direction.magnitude != 0f;
 
-        
-            
         animator.SetBool("IsWalking", isWalking);
         
         if (xAbsolute > yAbsolute)

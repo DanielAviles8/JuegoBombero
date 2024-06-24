@@ -13,22 +13,22 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager gameManager;
 
     // Estado actual del juego
-    private GameState gameState = GameState.None;
+    public static GameState gameState = GameState.None;
 
     private void Awake()
     {
         // Aseguramos que solo haya una instancia de GameManager
-        if (instance != null && instance != this)
+        if (gameManager != null && gameManager != this)
         {
             Destroy(gameObject);
             return;
         }
 
-        instance = this;
-        DontDestroyOnLoad(gameObject);
+        gameManager = this;
+       // DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(gameState);
         // Aquí podrías agregar lógica de actualización según el estado actual
     }
 
