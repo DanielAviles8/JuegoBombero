@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         // Aquí podrías inicializar tu juego con el estado inicial que desees
-        SetGameState(GameState.LoadMenu);
+       // SetGameState(GameState.LoadMenu);
     }
 
     private void Update()
