@@ -7,13 +7,17 @@ public class Object : MonoBehaviour
     public GameObject SmokeSign;
     public GameObject SmokeFinal;
     public GameObject Smoke;
-    public GameObject EmergencyExit;
+    public GameObject FirstExit;
+    public GameObject SecondExit;
+    public GameObject FinalExit;
     
     // Start is called before the first frame update
     void Start()
     {
         SmokeFinal.SetActive(false);
         Smoke.SetActive(false);
+        SecondExit.SetActive(false);
+        FinalExit.SetActive(false);
         pickedSmokeSign = false;
         pickedEmergencyExit = false;
     }
@@ -30,7 +34,7 @@ public class Object : MonoBehaviour
             pickedSmokeSign = true;
             Debug.Log("señal de fumar recogida");
         }
-        if (other.gameObject.CompareTag("EmergencyExit"))
+        if (other.gameObject.CompareTag("FirstExit"))
         {
             pickedEmergencyExit = true;
             Debug.Log("Señal de salida de emergencia recogida");
@@ -40,6 +44,11 @@ public class Object : MonoBehaviour
             Debug.Log("Objeto colocado");
             Smoke.SetActive(true);
             Smoke.transform.position = SmokeFinal.transform.position;
+        }
+        if (other.gameObject.CompareTag("FinalExit"))
+        {
+            FinalExit.SetActive(true);
+            FinalExit.transform.position = SecondExit.transform.position;
         }
     }
     private void PickItem()
@@ -53,7 +62,10 @@ public class Object : MonoBehaviour
 
         if(pickedEmergencyExit == true)
         {
-            EmergencyExit.SetActive(false);
+            FirstExit.SetActive(false);
+            SecondExit.SetActive(true);
+            SecondExit.GetComponent<SpriteRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+            
         }
     }
 }

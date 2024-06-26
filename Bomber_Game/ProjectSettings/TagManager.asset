@@ -7,8 +7,9 @@ TagManager:
   - Wall
   - Fire
   - SmokeSign
-  - EmergencyExit
   - FinalSmoke
+  - FinalExit
+  - FirstExit
   layers:
   - Default
   - TransparentFX
