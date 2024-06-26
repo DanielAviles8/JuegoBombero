@@ -20,6 +20,8 @@ public class Object : MonoBehaviour
     public GameObject OpenedDoor;
     public GameObject Fire;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,11 +30,14 @@ public class Object : MonoBehaviour
         SecondExit.SetActive(false);
         FinalExit.SetActive(false);
         ClosedDoor.SetActive(false);
+        Fire.SetActive(false);
         pickedSmokeSign = false;
         pickedEmergencyExit = false;
         firstStage0 = false;
         firstStage1 = false;
         activeDoor = false;
+
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -81,6 +86,7 @@ public class Object : MonoBehaviour
         }
         if (other.gameObject.CompareTag("CeaseFire") && pickedExtinguisher == true)
         {
+            animator.SetBool("CeaseFire", true);
             Fire.SetActive(false);
         }
     }
@@ -113,6 +119,8 @@ public class Object : MonoBehaviour
         if(firstStage0 == true && firstStage1 == true)
         {
             activeDoor = true;
+            Fire.SetActive(true);
+            animator.SetBool("StartFire", true);
         }
     }
 }
