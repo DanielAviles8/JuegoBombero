@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(gameState);
+        //Debug.Log(gameState);
         // Aquí podrías agregar lógica de actualización según el estado actual
     }
 

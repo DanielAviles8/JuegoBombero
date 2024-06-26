@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Wall
   - Fire
+  - SmokeSign
+  - EmergencyExit
+  - FinalSmoke
   layers:
   - Default
   - TransparentFX
