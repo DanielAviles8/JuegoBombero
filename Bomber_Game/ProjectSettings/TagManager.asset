@@ -69,6 +69,9 @@ TagManager:
   - name: ForeGround
     uniqueID: 1693250753
     locked: 0
+  - name: ForeForeGround
+    uniqueID: 362753943
+    locked: 0
   - name: Fire
     uniqueID: 1164592227
     locked: 0
