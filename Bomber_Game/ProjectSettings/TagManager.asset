@@ -10,6 +10,10 @@ TagManager:
   - FinalSmoke
   - FinalExit
   - FirstExit
+  - Extinguisher
+  - CloseDoor
+  - OpenDoor
+  - CeaseFire
   layers:
   - Default
   - TransparentFX

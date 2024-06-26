@@ -2,15 +2,24 @@ using UnityEngine;
 
 public class Object : MonoBehaviour
 {
+    public GameObject Player;
     public static bool pickedSmokeSign;
     public static bool pickedEmergencyExit;
+    private bool pickedExtinguisher;
+    private bool firstStage0;
+    private bool firstStage1;
+    private bool activeDoor;
     public GameObject SmokeSign;
     public GameObject SmokeFinal;
     public GameObject Smoke;
     public GameObject FirstExit;
     public GameObject SecondExit;
     public GameObject FinalExit;
-    
+    public GameObject Extinguisher;
+    public GameObject ClosedDoor;
+    public GameObject OpenedDoor;
+    public GameObject Fire;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,37 +27,61 @@ public class Object : MonoBehaviour
         Smoke.SetActive(false);
         SecondExit.SetActive(false);
         FinalExit.SetActive(false);
+        ClosedDoor.SetActive(false);
         pickedSmokeSign = false;
         pickedEmergencyExit = false;
+        firstStage0 = false;
+        firstStage1 = false;
+        activeDoor = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         PickItem();
+        PickExtinguisher();
+        ActiveDoor();
+        Debug.Log(activeDoor);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("SmokeSign"))
         {
             pickedSmokeSign = true;
-            Debug.Log("señal de fumar recogida");
         }
         if (other.gameObject.CompareTag("FirstExit"))
         {
             pickedEmergencyExit = true;
-            Debug.Log("Señal de salida de emergencia recogida");
         }
         if (other.gameObject.CompareTag("FinalSmoke") && SmokeFinal == true)
         {
-            Debug.Log("Objeto colocado");
             Smoke.SetActive(true);
             Smoke.transform.position = SmokeFinal.transform.position;
+            firstStage0 = true;
         }
         if (other.gameObject.CompareTag("FinalExit"))
         {
             FinalExit.SetActive(true);
             FinalExit.transform.position = SecondExit.transform.position;
+            firstStage1 = true;
+        }
+
+        if (other.gameObject.CompareTag("Extinguisher") && activeDoor == true)
+        {
+            pickedExtinguisher = true;
+        }
+
+        if (other.gameObject.CompareTag("OpenDoor"))
+        {
+            if(activeDoor == true)
+            {
+                OpenedDoor.SetActive(false);
+                ClosedDoor.SetActive(true);
+            }
+        }
+        if (other.gameObject.CompareTag("CeaseFire") && pickedExtinguisher == true)
+        {
+            Fire.SetActive(false);
         }
     }
     private void PickItem()
@@ -64,8 +97,22 @@ public class Object : MonoBehaviour
         {
             FirstExit.SetActive(false);
             SecondExit.SetActive(true);
-            SecondExit.GetComponent<SpriteRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
-            
+            SecondExit.GetComponent<SpriteRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);            
+        }
+    }
+    private void PickExtinguisher()
+    {
+        if(pickedExtinguisher == true)
+        {
+            Extinguisher.transform.parent = Player.transform;
+            Extinguisher.transform.position = Player.transform.position;
+        }
+    }
+    private void ActiveDoor()
+    {
+        if(firstStage0 == true && firstStage1 == true)
+        {
+            activeDoor = true;
         }
     }
 }
