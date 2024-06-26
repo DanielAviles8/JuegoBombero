@@ -5,6 +5,7 @@ public class Object : MonoBehaviour
     public GameObject Player;
     public static bool pickedSmokeSign;
     public static bool pickedEmergencyExit;
+    public static bool fire;
     private bool pickedExtinguisher;
     private bool firstStage0;
     private bool firstStage1;
@@ -20,8 +21,6 @@ public class Object : MonoBehaviour
     public GameObject OpenedDoor;
     public GameObject Fire;
 
-    private Animator animator;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -36,8 +35,6 @@ public class Object : MonoBehaviour
         firstStage0 = false;
         firstStage1 = false;
         activeDoor = false;
-
-        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -46,7 +43,6 @@ public class Object : MonoBehaviour
         PickItem();
         PickExtinguisher();
         ActiveDoor();
-        Debug.Log(activeDoor);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -86,7 +82,7 @@ public class Object : MonoBehaviour
         }
         if (other.gameObject.CompareTag("CeaseFire") && pickedExtinguisher == true)
         {
-            animator.SetBool("CeaseFire", true);
+            fire = false;
             Fire.SetActive(false);
         }
     }
@@ -120,7 +116,7 @@ public class Object : MonoBehaviour
         {
             activeDoor = true;
             Fire.SetActive(true);
-            animator.SetBool("StartFire", true);
+            fire = true;
         }
     }
 }
