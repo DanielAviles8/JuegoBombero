@@ -62,13 +62,14 @@ public class GameManager : MonoBehaviour
                 // Ejemplo de lo que podrías hacer en el estado None
                 break;
             case GameState.LoadMenu:
-              //  SceneManager.LoadScene("SampleScene");
+               
                 break;
             case GameState.MainMenu:
                 // Ejemplo de lo que podrías hacer en el estado MainMenu
                 break;
             case GameState.Loading:
                 // Ejemplo de lo que podrías hacer en el estado Loading
+                SceneManager.LoadScene("Level1");
                 break;
             case GameState.Playing:
                 // Ejemplo de lo que podrías hacer en el estado Playing
@@ -81,7 +82,10 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-
+    public void LoadLevel1()
+    {
+        SceneManager.LoadScene("Level1");
+    }
     // Método para obtener el estado actual del juego
     public GameState GetGameState()
     {
